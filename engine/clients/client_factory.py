@@ -23,6 +23,11 @@ from engine.clients.pgvector import (
     PgVectorSearcher,
     PgVectorUploader,
 )
+from engine.clients.myduck import (
+    MyDuckConfigurator,
+    MyDuckSearcher,
+    MyDuckUploader,
+)
 from engine.clients.qdrant import QdrantConfigurator, QdrantSearcher, QdrantUploader
 from engine.clients.redis import RedisConfigurator, RedisSearcher, RedisUploader
 from engine.clients.weaviate import (
@@ -39,6 +44,7 @@ ENGINE_CONFIGURATORS = {
     "opensearch": OpenSearchConfigurator,
     "redis": RedisConfigurator,
     "pgvector": PgVectorConfigurator,
+    "myduck": MyDuckConfigurator,
 }
 
 ENGINE_UPLOADERS = {
@@ -49,6 +55,7 @@ ENGINE_UPLOADERS = {
     "opensearch": OpenSearchUploader,
     "redis": RedisUploader,
     "pgvector": PgVectorUploader,
+    "myduck": MyDuckUploader,
 }
 
 ENGINE_SEARCHERS = {
@@ -59,6 +66,7 @@ ENGINE_SEARCHERS = {
     "opensearch": OpenSearchSearcher,
     "redis": RedisSearcher,
     "pgvector": PgVectorSearcher,
+    "myduck": MyDuckSearcher,
 }
 
 

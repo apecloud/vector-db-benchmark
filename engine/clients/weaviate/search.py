@@ -19,7 +19,7 @@ class WeaviateSearcher(BaseSearcher):
     client: WeaviateClient
 
     @classmethod
-    def init_client(cls, host, distance, connection_params: dict, search_params: dict):
+    def init_client(cls, host, dataset_config, connection_params: dict, search_params: dict):
         url = f"http://{host}:{connection_params.get('port', WEAVIATE_DEFAULT_PORT)}"
         client = WeaviateClient(
             ConnectionParams.from_url(url, 50051), skip_init_checks=True

@@ -22,7 +22,7 @@ class MilvusSearcher(BaseSearcher):
     parser = MilvusConditionParser()
 
     @classmethod
-    def init_client(cls, host, distance, connection_params: dict, search_params: dict):
+    def init_client(cls, host, dataset_config, connection_params: dict, search_params: dict):
         cls.client = connections.connect(
             alias=MILVUS_DEFAULT_ALIAS,
             host=host,
@@ -31,7 +31,7 @@ class MilvusSearcher(BaseSearcher):
         )
         cls.collection = Collection(MILVUS_COLLECTION_NAME, using=MILVUS_DEFAULT_ALIAS)
         cls.search_params = search_params
-        cls.distance = DISTANCE_MAPPING[distance]
+        cls.distance = DISTANCE_MAPPING[dataset_config.distance]
 
     @classmethod
     def get_mp_start_method(cls):

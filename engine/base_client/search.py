@@ -21,7 +21,7 @@ class BaseSearcher:
 
     @classmethod
     def init_client(
-        cls, host: str, distance, connection_params: dict, search_params: dict
+        cls, host: str, dataset_config, connection_params: dict, search_params: dict
     ):
         raise NotImplementedError()
 
@@ -55,7 +55,7 @@ class BaseSearcher:
 
     def search_all(
         self,
-        distance,
+        dataset_config,
         queries: Iterable[Query],
     ):
         parallel = self.search_params.get("parallel", 1)
@@ -63,7 +63,7 @@ class BaseSearcher:
 
         # setup_search may require initialized client
         self.init_client(
-            self.host, distance, self.connection_params, self.search_params
+            self.host, dataset_config, self.connection_params, self.search_params
         )
         self.setup_search()
 
@@ -82,7 +82,7 @@ class BaseSearcher:
                 initializer=self.__class__.init_client,
                 initargs=(
                     self.host,
-                    distance,
+                    dataset_config,
                     self.connection_params,
                     self.search_params,
                 ),

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "myduck-m-16-ef-128",
+    "engine": "myduck",
+    "connection_params": { "port": 5432, "connect_timeout": 30 },
+    "collection_params": {},
+    "search_params": [
+      { "parallel": 10, "config": { "hnsw_ef": 64 } }, { "parallel": 10, "config": { "hnsw_ef": 128 } }, { "parallel": 10, "config": { "hnsw_ef": 256 } }
+    ],
+    "upload_params": { "parallel": 8, "hnsw_config": { "m": 16, "ef_construct": 128 } }
+  },
+  {
+    "name": "myduck-m-64-ef-512-vs-qdrant",
+    "engine": "myduck",
+    "connection_params": { "port": 5432, "connect_timeout": 30 },
+    "collection_params": {},
+    "search_params": [
+      { "parallel": 1, "config": { "hnsw_ef": 64 } },
+      { "parallel": 1, "config": { "hnsw_ef": 128 } },
+      { "parallel": 1, "config": { "hnsw_ef": 192 } },
+      { "parallel": 1, "config": { "hnsw_ef": 256 } },
+      { "parallel": 1, "config": { "hnsw_ef": 320 } },
+      { "parallel": 1, "config": { "hnsw_ef": 384 } },
+      { "parallel": 1, "config": { "hnsw_ef": 448 } },
+      { "parallel": 1, "config": { "hnsw_ef": 512 } },
+      { "parallel": 16, "config": { "hnsw_ef": 64 } },
+      { "parallel": 16, "config": { "hnsw_ef": 128 } },
+      { "parallel": 16, "config": { "hnsw_ef": 192 } },
+      { "parallel": 16, "config": { "hnsw_ef": 256 } },
+      { "parallel": 16, "config": { "hnsw_ef": 320 } },
+      { "parallel": 16, "config": { "hnsw_ef": 384 } },
+      { "parallel": 16, "config": { "hnsw_ef": 448 } },
+      { "parallel": 16, "config": { "hnsw_ef": 512 } }
+    ],
+    "upload_params": { "parallel": 16, "hnsw_config": { "m": 64, "ef_construct": 512 } }
+  }
+]

@@ -19,11 +19,12 @@ class PgVectorSearcher(BaseSearcher):
     parser = PgVectorConditionParser()
 
     @classmethod
-    def init_client(cls, host, distance, connection_params: dict, search_params: dict):
+    def init_client(cls, host, dataset_config, connection_params: dict, search_params: dict):
         cls.conn = psycopg.connect(**get_db_config(host, connection_params))
         register_vector(cls.conn)
         cls.cur = cls.conn.cursor()
         cls.cur.execute(f"SET hnsw.ef_search = {search_params['config']['hnsw_ef']}")
+        distance = dataset_config.distance
         if distance == Distance.COSINE:
             cls.query = "SELECT id, embedding <=> %s AS _score FROM items ORDER BY _score LIMIT %s"
         elif distance == Distance.L2:

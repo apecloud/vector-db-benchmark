@@ -142,7 +142,7 @@ class BaseClient:
 
                 search_params = {**searcher.search_params}
                 search_stats = searcher.search_all(
-                    dataset.config.distance, reader.read_queries()
+                    dataset.config, reader.read_queries()
                 )
                 if not DETAILED_RESULTS:
                     # Remove verbose stats from search results

@@ -29,7 +29,7 @@ class RedisSearcher(BaseSearcher):
     search_namespace: RedisSearchIndex
 
     @classmethod
-    def init_client(cls, host, distance, connection_params: dict, search_params: dict):
+    def init_client(cls, host, dataset_config, connection_params: dict, search_params: dict):
         redis_constructor = RedisCluster if REDIS_CLUSTER else Redis
         cls.client = redis_constructor(
             host=host, port=REDIS_PORT, password=REDIS_AUTH, username=REDIS_USER
